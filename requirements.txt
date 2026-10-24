@@ -1,0 +1,8 @@
+numpy>=1.26
+pandas>=2.0
+geopandas>=1.0
+pyogrio>=0.7
+osmnx>=2.0
+requests>=2.31
+matplotlib>=3.8
+pytest>=8.0

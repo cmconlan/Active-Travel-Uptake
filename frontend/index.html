@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brighton Cycle Scenarios</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="panel">
+    <div class="disclaimer" role="note">
+      <strong>Synthetic data.</strong> <span id="disclaimer-text">Streets and traffic-stress ratings come from OpenStreetMap, but the commuting numbers and the model are synthetic, generated for a software demo. They do not describe real travel patterns.</span>
+    </div>
+
+    <h1 id="title">Central Brighton cycle uptake</h1>
+    <p class="lede"><span id="area-desc"></span>. Click streets to add a protected cycle lane, and see where the model expects more people to cycle to work.</p>
+
+    <div class="stats">
+      <div class="stat"><span id="stat-km">0.0</span><label>km of protected lane</label></div>
+      <div class="stat"><span id="stat-cyclists">0</span><label>extra cycle commuters (synthetic)</label></div>
+    </div>
+
+    <div id="presets" class="presets" hidden>
+      <div class="section-title">Try a scheme</div>
+      <div id="preset-buttons" class="preset-buttons"></div>
+    </div>
+
+    <div id="zone-info" class="zone-info">Hover over a zone for detail.</div>
+
+    <div class="legend">
+      <div class="section-title">Extra cycle commuters per zone</div>
+      <div id="legend-bar" class="legend-bar"></div>
+      <div class="legend-labels"><span>0</span><span id="legend-max">–</span></div>
+      <div class="section-title">Street traffic stress</div>
+      <div class="lts-keys">
+        <span><i class="swatch" style="background:var(--lts1)"></i>1 Comfortable</span>
+        <span><i class="swatch" style="background:var(--lts2)"></i>2</span>
+        <span><i class="swatch" style="background:var(--lts3)"></i>3</span>
+        <span><i class="swatch" style="background:var(--lts4)"></i>4 Main road</span>
+        <span><i class="swatch proposed"></i>Your protected lane</span>
+      </div>
+    </div>
+
+    <button id="reset" type="button">Clear lanes</button>
+
+    <p class="note">
+      Each zone's routes to stations, shops, schools and the centre are re-scored for traffic stress, and its low-stress reach is recomputed in your browser. A first-difference model fitted to <em>synthetic</em> census data converts those changes into predicted uptake (<span id="model-fit"></span>). Large schemes extrapolate beyond the model's training range.
+      <a href="https://github.com/" id="repo-link">Method and code</a>.
+    </p>
+  </aside>
+  <main id="map" aria-label="Map of central Brighton"></main>
+  <div class="map-chip" aria-hidden="true">Synthetic data, not real travel patterns</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
